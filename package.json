@@ -1,0 +1,27 @@
+{
+  "name": "amazon-cli",
+  "version": "1.0.0",
+  "description": "node app",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlowkeen/Amazon-CLI.git"
+  },
+  "keywords": [
+    "node",
+    "amazom"
+  ],
+  "author": "Donovan Lowkeen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlowkeen/Amazon-CLI/issues"
+  },
+  "homepage": "https://github.com/dlowkeen/Amazon-CLI#readme",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "mysql": "^2.15.0"
+  }
+}
