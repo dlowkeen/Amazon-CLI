@@ -3,6 +3,9 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 
+var newStockQuantity = "";
+var productChanged = "";
+
 // MySQL Conection Setup
 var connection = mysql.createConnection({
     host: "localhost",
@@ -17,14 +20,38 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-    if (err) throw err;
-    // Initiate function
-    displayAllInfo();
+	if (err) throw err;
+	initialQuestion();
 });
 
 
 // Functions 
 // --------------------------------------------------------
+function initialQuestion() {
+    inquirer.prompt({
+    	name: "task",
+    	type: "list",
+    	message: "What would you like to do?",
+    	choices: [
+    		"View/Buy Products",
+    		"Finish Shopping"
+    	]
+    })
+    .then(function(answer) {
+    	switch (answer.task) {
+    		case "View/Buy Products":
+    			displayAllInfo();
+    			break;
+    		case "Finish Shopping":
+    			console.log("Thank you for shopping with us");
+    			connection.end();
+    			break;
+    	}
+
+
+    })
+}
+
 function displayAllInfo() {
     console.log("Products available for purchase!");
     connection.query("SELECT item_id, product_name, price, stock_quantity FROM products", function(err, res) {
@@ -34,8 +61,11 @@ function displayAllInfo() {
                 console.log("Item ID: " + res[i].item_id + " | Product: " + res[i].product_name + " | Price: " + res[i].price);
             }
         }
-    });
-    salePrompt();
+
+        console.log("Hi there");
+    	salePrompt();
+    })
+
 }
 
 function salePrompt() {
@@ -60,13 +90,31 @@ function salePrompt() {
             message: "How many would you like to purchase?"
         }])
         .then(function(answer) {
-        	// if/else statement to determine if we have inventory on hand
+            // if/else statement to determine if we have inventory on hand
+            var query = "SELECT product_name, stock_quantity FROM products WHERE?";
+            connection.query(query, { product_name: answer.item }, function(err, res) {
+                if (err) throw err;
+                if (res[0].stock_quantity > answer.quantity) {
+                    console.log("It's in stock!");
+                    newStockQuantity = res[0].stock_quantity - answer.quantity;
+                    console.log(newStockQuantity);
+                    productChanged = answer.item;
+                    console.log(productChanged);
+                    // If we do, execute buyProduct function
+                    var query = connection.query("UPDATE products SET ? WHERE?",
+                        [{
+                                stock_quantity: newStockQuantity
+                            },
+                            {
+                                product_name: productChanged
+                            }
+                        ])
+                } else {
+                    console.log("Sorry, we don't have enough on hand to fulfill that order");
+                }
+            initialQuestion();
+            });
 
-        	// if we do, then execute the update function
-        	var query = connection.query()
-
-        	// if not, console.log we are out of stock
-            console.log(answer.item + answer.quantity);
         })
-    connection.end();
 }
+
