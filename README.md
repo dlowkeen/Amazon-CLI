@@ -8,7 +8,7 @@ In the command line, type 'npm install' to download node packages. Go to package
 
 ## Customer Workflow 
 Step 1. 
-<img src="https://raw.githubusercontent.com/dlowkeen/Amazon-CLI/master/assets/images/img1.PNG" width="85%" height="85%">
+<img src="https://raw.githubusercontent.com/dlowkeen/Amazon-CLI/master/assets/images/img1.png" width="85%" height="85%">
 
 ## Technologies Used
 - Node.js
