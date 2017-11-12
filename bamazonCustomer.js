@@ -93,7 +93,7 @@ function salePrompt() {
                 if (err) throw err;
                 if (res[0].stock_quantity > answer.quantity) {
                     console.log("It's in stock!");
-                    newStockQuantity = parseFLoat(res[0].stock_quantity) - parseFloat(answer.quantity);
+                    newStockQuantity = (res[0].stock_quantity) - (answer.quantity);
                     productChanged = answer.item;
                     // If we do, execute buyProduct function
                     var query = connection.query("UPDATE products SET ? WHERE?",

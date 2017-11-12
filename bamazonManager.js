@@ -153,7 +153,6 @@ function addProduct() {
 	        },
 	        function(err, res) {
 	            console.log("Product Inserted");
-	            // Call updateSong AFTER the INSERT completes
 	            task();
 	        });
 	})	    
