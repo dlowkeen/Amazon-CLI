@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/dlowkeen/Amazon-CLI#readme",
   "dependencies": {
+    "console.table": "^0.9.1",
     "inquirer": "^3.3.0",
     "mysql": "^2.15.0"
   }
