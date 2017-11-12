@@ -23,6 +23,15 @@ Step 4.
 
 <img src="https://raw.githubusercontent.com/dlowkeen/Amazon-CLI/master/assets/images/img4.png" width="85%" height="85%">
 
+## Manager Workflow
+View All Products
+
+<img src="https://raw.githubusercontent.com/dlowkeen/Amazon-CLI/master/assets/images/img5.png" width="85%" height="85%">
+
+View Low Inventory
+
+<img src="https://raw.githubusercontent.com/dlowkeen/Amazon-CLI/master/assets/images/img6.png" width="85%" height="85%">
+
 ## Technologies Used
 - Node.js
 - MySQL
