@@ -16,7 +16,7 @@ CREATE TABLE products (
 
 SELECT * FROM products;
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
+INSERT INTO products;
 
 VALUES
   (1000, "Panini Press", "Cooking", 19.99, 15),

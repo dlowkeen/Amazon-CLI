@@ -61,11 +61,8 @@ function displayAllInfo() {
                 console.log("Item ID: " + res[i].item_id + " | Product: " + res[i].product_name + " | Price: " + res[i].price);
             }
         }
-
-        console.log("Hi there");
     	salePrompt();
     })
-
 }
 
 function salePrompt() {
@@ -96,10 +93,8 @@ function salePrompt() {
                 if (err) throw err;
                 if (res[0].stock_quantity > answer.quantity) {
                     console.log("It's in stock!");
-                    newStockQuantity = res[0].stock_quantity - answer.quantity;
-                    console.log(newStockQuantity);
+                    newStockQuantity = parseFLoat(res[0].stock_quantity) - parseFloat(answer.quantity);
                     productChanged = answer.item;
-                    console.log(productChanged);
                     // If we do, execute buyProduct function
                     var query = connection.query("UPDATE products SET ? WHERE?",
                         [{
@@ -114,7 +109,6 @@ function salePrompt() {
                 }
             initialQuestion();
             });
-
         })
 }
 
